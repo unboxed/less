@@ -1,7 +1,7 @@
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |s|
-    s.name        = "less"
+    s.name        = "unboxed-less"
     s.authors     = ["cloudhead"]
     s.email       = "self@cloudhead.net"
     s.summary     = "LESS compiler"

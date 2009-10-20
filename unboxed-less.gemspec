@@ -4,12 +4,12 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{less}
+  s.name = %q{unboxed-less}
   s.version = "1.2.11"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["cloudhead"]
-  s.date = %q{2009-10-12}
+  s.date = %q{2009-10-20}
   s.default_executable = %q{lessc}
   s.description = %q{LESS is leaner CSS}
   s.email = %q{self@cloudhead.net}
@@ -26,7 +26,6 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "bin/lessc",
-     "less.gemspec",
      "lib/ext.rb",
      "lib/less.rb",
      "lib/less/command.rb",
@@ -92,7 +91,8 @@ Gem::Specification.new do |s|
      "spec/less/variables.less",
      "spec/less/whitespace.less",
      "spec/spec.css",
-     "spec/spec_helper.rb"
+     "spec/spec_helper.rb",
+     "unboxed-less.gemspec"
   ]
   s.homepage = %q{http://www.lesscss.org}
   s.rdoc_options = ["--charset=UTF-8"]
