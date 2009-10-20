@@ -22,15 +22,6 @@ module Treetop
   end
 end
 
-class Object
-  def verbose
-    $verbose = true
-    yield
-  ensure
-    $verbose = false
-  end
-end
-
 unless :symbol.respond_to?(:to_proc)
   class Symbol
     def to_proc
