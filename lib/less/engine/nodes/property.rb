@@ -211,7 +211,7 @@ module Less
 
           case result
             when Entity     then result
-            when Expression then result.one?? result.first : self.class.new(result, parent, delimiter)
+            when Expression then result.size == 1 ? result.first : self.class.new(result, parent, delimiter)
             else entity.class.new(result, *(unit if entity.class == Node::Number))
           end
         elsif size == 1

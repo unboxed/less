@@ -45,10 +45,6 @@ class Array
       else ary
     end
   end
-  
-  def one?
-    size == 1
-  end
 end
 
 unless :symbol.respond_to?(:to_proc)
