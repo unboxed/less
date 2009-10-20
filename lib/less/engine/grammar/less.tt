@@ -178,7 +178,8 @@ module Less
       # Operation
       expression tail:(operator expression)+ {
         def build env = nil          
-          all.map {|e| e.build(env) }.dissolve
+          ret = all.map {|e| e.build(env) }.flatten.compact
+          ret.size == 1 ? ret.first : ret
         end
 
         def all
@@ -209,7 +210,11 @@ module Less
       } / entity '' {
         def build env = nil
           e = entity.method(:build).arity.zero?? entity.build : entity.build(env)
-          e.respond_to?(:dissolve) ? e.dissolve : e
+          if e.is_a?( Array )
+            e = e.flatten.compact
+            e = e.size == 1 ? e.first : e
+          end
+          e
         end
       }
     end

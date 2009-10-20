@@ -36,17 +36,6 @@ class Object
   end
 end
 
-class Array
-  def dissolve
-    ary = flatten.compact
-    case ary.size
-      when 0 then []
-      when 1 then first
-      else ary
-    end
-  end
-end
-
 unless :symbol.respond_to?(:to_proc)
   class Symbol
     def to_proc
