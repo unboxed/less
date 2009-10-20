@@ -51,7 +51,7 @@ module Less
       end
     end
 
-    def parse new = false
+    def parse is_new = false
       begin
         # Create a new Less object with the contents of a file
         css = Less::Engine.new(File.new(@source), @options).to_css
@@ -60,7 +60,7 @@ module Less
         File.open( @destination, "w" ) do |file|
           file.write css
         end
-        print "#{o('* ' + (new ? 'Created'  : 'Updated'), :green)} " + 
+        print "#{o('* ' + (is_new ? 'Created'  : 'Updated'), :green)} " + 
               "#{@destination.split('/').last}\n: " if watch?
       rescue Errno::ENOENT => e
         abort "#{e}"
