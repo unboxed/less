@@ -122,7 +122,9 @@ module Less
       
       def mix arr = []
         @rules += arr.map do |r|
-          r.copy.tap {|i| i.parent = self }
+          n = r.copy
+          n.parent = self
+          n
         end
       end
       
@@ -176,11 +178,11 @@ module Less
       #
       def nearest ident, type = nil
         ary = type || ident =~ /^[.#]/ ? :elements : :variables
-        path.map do |node|
+        result = path.map do |node|
           node.send(ary).find {|i| i.to_s == ident }
-        end.compact.first.tap do |result|
-          raise VariableNameError, ("#{ident} in #{self.to_s}") unless result
-        end
+        end.compact.first
+        raise VariableNameError, ("#{ident} in #{self.to_s}") unless result
+        result
       end
 
       #

@@ -34,7 +34,8 @@ module Less
       return root unless build
       
       if root
-        @tree = root.build env.tap {|e| e.file = @path }
+        env.file = @path
+        @tree = root.build env
       else
         raise SyntaxError, @parser.failure_message(@options[:color])
       end

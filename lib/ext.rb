@@ -29,11 +29,6 @@ class Object
   ensure
     $verbose = false
   end
-  
-  def tap
-    yield self
-    self
-  end
 end
 
 unless :symbol.respond_to?(:to_proc)

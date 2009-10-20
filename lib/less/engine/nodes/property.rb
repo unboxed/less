@@ -28,7 +28,9 @@ module Less
       end
       
       def copy
-        clone.tap {|c| c.value = value.copy }
+        ret = clone
+        ret.value = value.copy
+        ret
       end
       
       def << token        
@@ -199,9 +201,9 @@ module Less
 
           unit = evaled.literals.map do |node|
             node.unit
-          end.compact.uniq.tap do |ary|
-            raise MixedUnitsError, evaled * ' ' if ary.size > 1 && !evaled.operators.empty?
-          end.join
+          end.compact.uniq
+          raise MixedUnitsError, evaled * ' ' if unit.size > 1 && !evaled.operators.empty?
+          unit = unit.join
           
           entity = evaled.literals.find {|e| e.unit == unit } || evaled.literals.first || evaled.entities.first
           result = evaled.operators.empty?? evaled : eval(evaled.to_ruby.join)
