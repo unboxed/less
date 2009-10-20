@@ -9,7 +9,6 @@ begin
     s.description = "LESS is leaner CSS"
     s.rubyforge_project = 'less'
     s.add_dependency('treetop', '>= 1.4.2')
-    s.add_dependency('mutter', '>= 0.3.7')
   end
   Jeweler::GemcutterTasks.new
   Jeweler::RubyforgeTasks.new

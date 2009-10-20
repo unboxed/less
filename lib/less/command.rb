@@ -7,7 +7,6 @@ module Less
       @source = options[:source]
       @destination = (options[:destination] || options[:source]).gsub /\.(less|lss)/, '.css'
       @options = options
-      @mutter = Mutter.new.clear
     end
 
     def watch?()    @options[:watch]    end
@@ -60,7 +59,7 @@ module Less
         File.open( @destination, "w" ) do |file|
           file.write css
         end
-        print "#{o('* ' + (is_new ? 'Created'  : 'Updated'), :green)} " + 
+        print "* #{is_new ? 'Created'  : 'Updated'} " +
               "#{@destination.split('/').last}\n: " if watch?
       rescue Errno::ENOENT => e
         abort "#{e}"
@@ -71,9 +70,9 @@ module Less
       rescue PathError => e
         err "`#{e}` was not found.\n", "Path"
       rescue VariableNameError => e
-        err "#{o(e, :yellow)} is undefined.\n", "Variable Name"
+        err "#{e} is undefined.\n", "Variable Name"
       rescue MixinNameError => e
-        err "#{o(e, :yellow)} is undefined.\n", "Mixin Name"
+        err "#{e} is undefined.\n", "Mixin Name"
       else
         true
       end
@@ -86,7 +85,7 @@ module Less
 
     def err s = '', type = ''
       type = type.strip + ' ' unless type.empty?
-      $stderr.print "#{o("! #{type}Error", :red)}: #{s}"
+      $stderr.print "! #{type}Error: #{s}"
       if @options[:growl]
         growl = Growl.new
         growl.title = "LESS"
@@ -94,12 +93,6 @@ module Less
         growl.run
         false
       end
-    end
-    
-    private
-    
-    def o ex, *styles
-      @mutter.process(ex.to_s, *(@options[:color] ? styles : []))
     end
   end
 end
