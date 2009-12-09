@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{unboxed-less}
-  s.version = "1.2.12"
+  s.version = "1.2.19"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["cloudhead"]
-  s.date = %q{2009-10-20}
+  s.date = %q{2009-12-09}
   s.default_executable = %q{lessc}
   s.description = %q{LESS is leaner CSS}
   s.email = %q{self@cloudhead.net}
@@ -26,7 +26,6 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "bin/lessc",
-     "lib/ext.rb",
      "lib/less.rb",
      "lib/less/command.rb",
      "lib/less/engine.rb",
@@ -41,6 +40,7 @@ Gem::Specification.new do |s|
      "lib/less/engine/nodes/property.rb",
      "lib/less/engine/nodes/ruleset.rb",
      "lib/less/engine/nodes/selector.rb",
+     "lib/less/ext.rb",
      "spec/command_spec.rb",
      "spec/css/accessors.css",
      "spec/css/big.css",
@@ -48,6 +48,7 @@ Gem::Specification.new do |s|
      "spec/css/comments.css",
      "spec/css/css-3.css",
      "spec/css/css.css",
+     "spec/css/dash-prefix.css",
      "spec/css/functions.css",
      "spec/css/import.css",
      "spec/css/lazy-eval.css",
@@ -68,6 +69,7 @@ Gem::Specification.new do |s|
      "spec/less/comments.less",
      "spec/less/css-3.less",
      "spec/less/css.less",
+     "spec/less/dash-prefix.less",
      "spec/less/exceptions/mixed-units-error.less",
      "spec/less/exceptions/name-error-1.0.less",
      "spec/less/exceptions/syntax-error-1.0.less",

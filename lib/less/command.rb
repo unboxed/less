@@ -36,6 +36,7 @@ module Less
 
           # File has changed
           if File.stat( @source ).mtime > File.stat( @destination ).mtime
+            print Time.now.strftime("%H:%M:%S -- ") if @options[:timestamps]
             print "Change detected... "
 
             # Loop until error is fixed
@@ -59,12 +60,16 @@ module Less
         File.open( @destination, "w" ) do |file|
           file.write css
         end
-        print "* #{is_new ? 'Created'  : 'Updated'} " +
-              "#{@destination.split('/').last}\n: " if watch?
+
+        act, file = (is_new ? 'Created' : 'Updated'), @destination.split('/').last
+        print "* #{act} #{file}\n: " if watch?
+        Growl.notify "#{act} #{file}", :title => 'LESS' if @options[:growl] && @options[:verbose]
       rescue Errno::ENOENT => e
         abort "#{e}"
       rescue SyntaxError => e
         err "#{e}\n", "Syntax"
+      rescue CompileError => e
+        err "#{e}\n", "Compile"
       rescue MixedUnitsError => e
         err "`#{e}` you're  mixing units together! What do you expect?\n", "Mixed Units"
       rescue PathError => e
